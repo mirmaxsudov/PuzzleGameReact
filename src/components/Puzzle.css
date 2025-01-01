@@ -1,37 +1,46 @@
-.puzzle {
-  background-color: #152942;
-  height: 100vh;
-  width: 100vw;
+#size-select {
+  margin: 10px;
+  margin-left: 0;
+  border: 1px solid #ccc;
+  border: none;
+  padding: 14px;
+  padding-right: 0px;
+  border-radius: 30px;
+  -webkit-appearance: none;
+  padding-right: 5px;
+  appearance: none;
+  font-size: 16px;
 }
 
-.puzzle-container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100vw;
-    height: 100vh;
-    margin: 0 auto;
-}
-
-.puzzle-container {
+.controls {
   display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
-}
-
-.puzzle-row {
-  display: flex;
-}
-
-.puzzle-col {
-  width: 75px;
-  height: 75px;
-  background-color: #eaeaea;
-  border: 1px solid #152942;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin: 10px;
+}
+
+.timer {
   font-size: 20px;
-  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  margin-right: 0;
+  padding: 10px;
+  padding-left: 0px;
+  color: #fff;
+}
+
+#tile {
+  font-size: 30px;
+}
+
+#tile-small {
+  font-size: 15px;
+}
+
+.win-message {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 20px;
+  text-align: center;
 }
