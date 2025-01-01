@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Shuffle } from 'react-feather';
 import "./Puzzle.css";
+import { Col, Container, Row } from "react-bootstrap";
 
 const SlidingPuzzle = () => {
     const [size, setSize] = useState(3);
@@ -117,78 +118,86 @@ const SlidingPuzzle = () => {
 
     return (
         <>
-            <div className="puzzle">
-                <div className="controls">
-                    <select
-                        id="size-select"
-                        value={size}
-                        onChange={(e) => setSize(parseInt(e.target.value))}
-                        disabled={isPlaying}
-                    >
-                        {Array.from({ length: 8 }, (_, i) => i + 3).map((n) => (
-                            <option key={n} value={n}>
-                                {n}x{n} Grid
-                            </option>
-                        ))}
-                    </select>
-                    <button onClick={shuffle} disabled={isPlaying}>
-                        <Shuffle id="shuffle" size={24} stroke="#152942" style={{ margin: "10px", transform: "rotate(45deg)" }} />
-                    </button>
-                </div>
-                <div className="timer-wrapper">
-                    <div className="timer">{formatTime(time)}</div>
-                </div>
-                <div
-                    className="puzzle-grid"
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: `repeat(${size}, 1fr)`,
-                        gap: "0.5rem",
-                        width: `${Math.min(400, size * 80)}px`,
-                        height: `${Math.min(400, size * 80)}px`,
-                    }}
-                >
-                    {Array.from({ length: size * size }).map((_, index) => {
-                        const tile = getTileAtIndex(index);
-                        if (!tile) {
-                            return <div key={`empty-${index}`} className="empty-tile" />;
-                        }
-                        return (
-                            <button
-                                id={size < 6 ? "tile" : "tile-small"}
-                                key={tile.value}
-                                onClick={() => handleTileClick(index)}
-                                className={`tile ${isWon ? "won" : ""}`}
-                            >
-                                {tile.value}
-                            </button>
-                        );
-                    })}
-                </div>
-                {
-                    isPlaying && !isWon && (
-                        <>
-                            <button onClick={() => {
-                                setIsPlaying(false)
-                                setTime(0)
-                            }} className="stop-btn">Stop</button>
-                        </>
-                    )
-                }
-                {
-                    !isPlaying && !isWon && (
-                        <button onClick={() => {
-                            setIsPlaying(true)
-                            shuffle()
-                        }} className="start-btn">Start</button>
-                    )
-                }
-            </div>
-            {isWon && (
-                <div className="win-message">
-                    Congratulations!<br /> You solved it in {formatTime(time)}!
-                </div>
-            )}
+            <Container>
+                <Row>
+                    <Col md={12} className="puzzle-container">
+                        <div className="puzzle-wrapper">
+                            <div className="puzzle">
+                                <div className="controls">
+                                    <select
+                                        id="size-select"
+                                        value={size}
+                                        onChange={(e) => setSize(parseInt(e.target.value))}
+                                        disabled={isPlaying}
+                                    >
+                                        {Array.from({ length: 8 }, (_, i) => i + 3).map((n) => (
+                                            <option key={n} value={n}>
+                                                {n}x{n} Grid
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <button onClick={shuffle} disabled={isPlaying}>
+                                        <Shuffle id="shuffle" size={24} stroke="#152942" style={{ margin: "10px", transform: "rotate(45deg)" }} />
+                                    </button>
+                                </div>
+                                <div className="timer-wrapper">
+                                    <div className="timer">{formatTime(time)}</div>
+                                </div>
+                                <div
+                                    className="puzzle-grid"
+                                    style={{
+                                        display: "grid",
+                                        gridTemplateColumns: `repeat(${size}, 1fr)`,
+                                        gap: "0.5rem",
+                                        width: `${Math.min(500, size * 80)}px`,
+                                        height: `${Math.min(500, size * 80)}px`,
+                                    }}
+                                >
+                                    {Array.from({ length: size * size }).map((_, index) => {
+                                        const tile = getTileAtIndex(index);
+                                        if (!tile) {
+                                            return <div key={`empty-${index}`} className="empty-tile" />;
+                                        }
+                                        return (
+                                            <button
+                                                id={size < 6 ? "tile" : "tile-small"}
+                                                key={tile.value}
+                                                onClick={() => handleTileClick(index)}
+                                                className={`tile ${isWon ? "won" : ""}`}
+                                            >
+                                                {tile.value}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                {
+                                    isPlaying && !isWon && (
+                                        <>
+                                            <button onClick={() => {
+                                                setIsPlaying(false)
+                                                setTime(0)
+                                            }} className="stop-btn">Stop</button>
+                                        </>
+                                    )
+                                }
+                                {
+                                    !isPlaying && !isWon && (
+                                        <button onClick={() => {
+                                            setIsPlaying(true)
+                                            shuffle()
+                                        }} className="start-btn">Start</button>
+                                    )
+                                }
+                            </div>
+                            {isWon && (
+                                <div className="win-message">
+                                    Congratulations!<br /> You solved it in {formatTime(time)}!
+                                </div>
+                            )}
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         </>
     );
 };

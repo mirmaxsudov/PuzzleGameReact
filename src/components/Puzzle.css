@@ -73,3 +73,22 @@
 .start-btn {
   background-color: #2196f3;
 }
+
+#telegram {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 528px) {
+  .puzzle-wrapper {
+    padding-left: 60px;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (max-width: 391px) {
+  .puzzle-wrapper {
+    padding-left: 0;
+    padding-right: 10px;
+  }
+}

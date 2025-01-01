@@ -3,9 +3,9 @@ import Puzzle from './components/Puzzle';
 
 function App() {
   return (
-    <>
+    <div style={{ padding: '20px' }}>
       <Puzzle />
-    </>
+    </div>
   );
 }
 
