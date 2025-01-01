@@ -84,7 +84,6 @@ const SlidingPuzzle = () => {
     };
 
     const shuffle = () => {
-        setIsPlaying(false);
         setTime(0);
         setIsWon(false);
 
@@ -118,7 +117,7 @@ const SlidingPuzzle = () => {
 
     return (
         <>
-            <div className="sliding-puzzle">
+            <div className="puzzle">
                 <div className="controls">
                     <select
                         id="size-select"
@@ -166,6 +165,24 @@ const SlidingPuzzle = () => {
                         );
                     })}
                 </div>
+                {
+                    isPlaying && !isWon && (
+                        <>
+                            <button onClick={() => {
+                                setIsPlaying(false)
+                                setTime(0)
+                            }} className="stop-btn">Stop</button>
+                        </>
+                    )
+                }
+                {
+                    !isPlaying && !isWon && (
+                        <button onClick={() => {
+                            setIsPlaying(true)
+                            shuffle()
+                        }} className="start-btn">Start</button>
+                    )
+                }
             </div>
             {isWon && (
                 <div className="win-message">
